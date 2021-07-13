@@ -11,7 +11,7 @@ export const MainPageWrapper = styled.div`
 export const HeaderWrapper = styled.div`
 `
 
-export const SidebarAndMapWrapper = styled.div`
+export const MainContentWrapper = styled.div`
     height:100%;
     display: flex;
 `
