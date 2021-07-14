@@ -2,12 +2,14 @@ import { MainPageWrapper, HeaderWrapper, MainContentWrapper } from './MainPageEl
 
 import MainPageHeader from '../../components/mainPageHeader/MainPageHeader'
 
+import NoCitiesModal from '../../components/noCitiesModal/NoCitiesModal'
+
 const MainPage = () => {
     return (
         <>
             <MainPageWrapper>
                 <MainContentWrapper>
-
+                    <NoCitiesModal />
                 </MainContentWrapper>
             </MainPageWrapper>
         </>

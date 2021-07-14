@@ -12,6 +12,6 @@ export const HeaderWrapper = styled.div`
 `
 
 export const MainContentWrapper = styled.div`
+    position:relative;
     height:100%;
-    display: flex;
 `
