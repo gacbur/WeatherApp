@@ -60,6 +60,10 @@ export const LocaliztionButton = styled.button`
     transition: .2s;
     box-shadow: 0 0px 8px rgba(0,0,0,.2);
 
+    span{
+        display: flex;
+    }
+
     .icon{
         display: flex;
         font-size: 24px;
