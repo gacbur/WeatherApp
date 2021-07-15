@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux'
-import { City } from './savedCitiesActionTypes'
+import { QuickSearchItemType as City } from '../../components/search/Search'
 import { ADD_NEW_CITY, REMOVE_CITY, SavedCitiesDispatchTypes } from './savedCitiesActionTypes'
 
 export const addNewCity = (city: City) => (dispatch: Dispatch<SavedCitiesDispatchTypes>, getState: any) => {
@@ -7,7 +7,7 @@ export const addNewCity = (city: City) => (dispatch: Dispatch<SavedCitiesDispatc
         type: ADD_NEW_CITY,
         payload: city
     })
-    localStorage.setItem('savedCities', JSON.stringify(getState().pinnedJobs.pinnedJobs))
+    localStorage.setItem('savedCities', JSON.stringify(getState().savedCities.cities))
 }
 
 export const removeCity = (id: string) => (dispatch: Dispatch<SavedCitiesDispatchTypes>, getState: any) => {
@@ -15,7 +15,7 @@ export const removeCity = (id: string) => (dispatch: Dispatch<SavedCitiesDispatc
         type: REMOVE_CITY,
         payload: id
     })
-    localStorage.setItem('savedCities', JSON.stringify(getState().pinnedJobs.pinnedJobs))
+    localStorage.setItem('savedCities', JSON.stringify(getState().savedCities.cities))
 }
 
 

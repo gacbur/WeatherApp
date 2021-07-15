@@ -18,6 +18,15 @@ type SearchProps = {
 export type QuickSearchItemType = {
     id: number,
     name: string,
+    country: string,
+    temp: number,
+    temp_min: number,
+    temp_max: number,
+    sunrise: number,
+    sunset: number,
+    weatherName: string,
+    weatherDesc: string,
+    WeatherIcon: string,
 }
 
 const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
@@ -26,39 +35,37 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
     const [quickSearchResult, setQuickSearchResults] = useState<any>([])
     const [quickSearchResLoading, setQuickSearchResLoading] = useState<boolean>(false)
 
-
     useEffect(() => {
-        console.log(quickSearchResult)
-    }, [quickSearchResult])
-
-    useEffect(() => {
-
         const source = axios.CancelToken.source()
 
         const getQuickSearchResults = async (searchValue: string) => {
             setQuickSearchResLoading(true)
-            try {
-                setTimeout(async () => {
-                    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${process.env.REACT_APP_API_KEY}`, {
+            setTimeout(async () => {
+                try {
+                    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=${process.env.REACT_APP_API_KEY}`, {
                         cancelToken: source.token
                     })
                     const results = await response.data
-                    console.log(results)
                     setQuickSearchResults([{
                         id: results.id,
-                        name: results.name
+                        name: results.name,
+                        country: results.sys.country,
+                        temp: results.main.temp,
+                        temp_min: results.main.temp_min,
+                        temp_max: results.main.temp_max,
+                        sunrise: results.sys.sunrise,
+                        sunset: results.sys.sunset,
+                        weatherName: results.weather[0].main,
+                        weatherDesc: results.weather[0].description,
+                        weatherIcon: results.weather[0].icon
                     }])
                     setQuickSearchResLoading(false)
-                }, 600)
-            } catch (err) {
-                if (axios.isCancel(err)) {
-                    setQuickSearchResLoading(false)
-                    console.log('canceled')
-                } else {
-                    console.log(err)
+                } catch (err) {
+                    if (axios.isCancel(err)) {
+                        setQuickSearchResLoading(false)
+                    }
                 }
-
-            }
+            }, 600)
         }
         if (searchValue !== "") {
             getQuickSearchResults(searchValue)
@@ -120,7 +127,7 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
                                 </LoadingWrapper>
                                 :
                                 quickSearchResult.map((result: QuickSearchItemType, index: number) => {
-                                    return <SearchResultItem key={index} resultItem={result} />
+                                    return <SearchResultItem key={index} setOpened={setOpened} resultItem={result} />
                                 })
                         }
 

@@ -1,5 +1,12 @@
 import styled from 'styled-components'
 
+export const SearchItemWrapper = styled.div`
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
+
 export const SearchItem = styled.div`
     cursor:pointer;
     width:80%;
@@ -29,4 +36,11 @@ export const SearchItem = styled.div`
         height: 100%;
         width:40px;
     }
+`
+
+export const AlreadySaved = styled.div`
+    margin-top: 2em;
+    font-weight: bolder;
+    font-size: 18px;
+    color: rgba(0,0,0,.6)
 `

@@ -1,15 +1,15 @@
-import { MainPageWrapper, HeaderWrapper, MainContentWrapper } from './MainPageElements'
-
-import MainPageHeader from '../../components/mainPageHeader/MainPageHeader'
+import { MainPageWrapper, MainContentWrapper } from './MainPageElements'
 
 import NoCitiesModal from '../../components/noCitiesModal/NoCitiesModal'
 
 const MainPage = () => {
+
+
     return (
         <>
             <MainPageWrapper>
                 <MainContentWrapper>
-                    <NoCitiesModal />
+                    {<NoCitiesModal />}
                 </MainContentWrapper>
             </MainPageWrapper>
         </>

@@ -1,5 +1,9 @@
 import { useState } from 'react'
 
+import { useSelector } from 'react-redux'
+
+import { RootStore } from '../../redux/Store'
+
 import SearchBar from '../search/Search'
 
 import { NoCititesModalWrapper, MainContent, ButtonsWrapper, LocaliztionButton, SearchByCityButton } from './NoCititesModalElements'
@@ -11,8 +15,10 @@ const NoCitiesModal = () => {
 
     const [searchActive, setSearchActive] = useState<boolean>(false)
 
+    const cities = useSelector((state: RootStore) => state.savedCities.cities)
+
     return (
-        <NoCititesModalWrapper>
+        <NoCititesModalWrapper citiesLengthEqualZero={cities.length === 0}>
             <MainContent>
                 <h3 className="title-big">
                     Currently there are no weather information tracked for any city.

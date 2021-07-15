@@ -10,6 +10,9 @@ export const NoCititesModalWrapper = styled.div`
     bottom:0px;
     top:0px;
     background-color: rgba(0,0,0,.6);
+    opacity: ${(props: { citiesLengthEqualZero: boolean }) => props.citiesLengthEqualZero ? 1 : 0};
+    visibility: ${(props: { citiesLengthEqualZero: boolean }) => props.citiesLengthEqualZero ? 'visible' : 'hidden'};
+    transition: .3s;
 `
 
 export const MainContent = styled.div`

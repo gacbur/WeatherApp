@@ -1,4 +1,4 @@
-import { City } from './savedCitiesActionTypes'
+import { QuickSearchItemType as City } from '../../components/search/Search'
 import { ADD_NEW_CITY, REMOVE_CITY, SavedCitiesDispatchTypes } from './savedCitiesActionTypes'
 
 interface InitialStateI {

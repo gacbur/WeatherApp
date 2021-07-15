@@ -9,9 +9,9 @@ export const SearchWrapper = styled.div`
     bottom:0px;
     top:0px;
     background-color: rgba(255,255,255,.96);
-    opacity: ${(props: { opened: boolean }) => props.opened ? 1 : 0};
-    visibility: ${(props: { opened: boolean }) => props.opened ? 'visible' : 'hidden'};
-    transition: .2s;
+    opacity: ${(props: { opened: any }) => props.opened ? 1 : 0};
+    visibility: ${(props: { opened: any }) => props.opened ? 'visible' : 'hidden'};
+    transition: .3s;
 `
 
 export const CloseButton = styled.button`
