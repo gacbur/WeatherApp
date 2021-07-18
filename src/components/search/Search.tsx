@@ -5,7 +5,7 @@ import axios from 'axios'
 import SearchResultItem from '../searchResultItem/SearchResultItem'
 import Loading from '../loading/Loading'
 
-import { SearchWrapper, CloseButton, SearchBarWrapper, SearchInput, SearchResult, LoadingWrapper } from './SearchElements'
+import { SearchWrapper, CloseButton, SearchBarWrapper, SearchInput, SearchResult, LoadingWrapper, ErrorWrapper } from './SearchElements'
 
 import { CgClose } from 'react-icons/cg'
 import { BiSearch } from 'react-icons/bi'
@@ -18,52 +18,47 @@ type SearchProps = {
 export type QuickSearchItemType = {
     id: number,
     name: string,
-    country: string,
-    temp: number,
-    temp_min: number,
-    temp_max: number,
-    sunrise: number,
-    sunset: number,
-    weatherName: string,
-    weatherDesc: string,
-    WeatherIcon: string,
 }
 
 const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
 
     const [searchValue, setSearchValue] = useState<string>('')
-    const [quickSearchResult, setQuickSearchResults] = useState<any>([])
+    const [quickSearchResult, setQuickSearchResult] = useState<any>([])
     const [quickSearchResLoading, setQuickSearchResLoading] = useState<boolean>(false)
+    const [quickSearchResError, setQucikSearchResError] = useState<boolean>(false)
+    const [errorMessage, setErrorMessage] = useState<string>('')
 
     useEffect(() => {
         const source = axios.CancelToken.source()
 
         const getQuickSearchResults = async (searchValue: string) => {
             setQuickSearchResLoading(true)
+            setQucikSearchResError(false)
+            setErrorMessage('')
             setTimeout(async () => {
                 try {
-                    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&units=metric&appid=${process.env.REACT_APP_API_KEY}`, {
+                    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchValue}&appid=${process.env.REACT_APP_API_KEY}`, {
                         cancelToken: source.token
                     })
                     const results = await response.data
-                    setQuickSearchResults([{
+                    setQuickSearchResult([{
                         id: results.id,
                         name: results.name,
-                        country: results.sys.country,
-                        temp: results.main.temp,
-                        temp_min: results.main.temp_min,
-                        temp_max: results.main.temp_max,
-                        sunrise: results.sys.sunrise,
-                        sunset: results.sys.sunset,
-                        weatherName: results.weather[0].main,
-                        weatherDesc: results.weather[0].description,
-                        weatherIcon: results.weather[0].icon
                     }])
                     setQuickSearchResLoading(false)
+                    setQucikSearchResError(false)
                 } catch (err) {
+                    setQuickSearchResult([])
                     if (axios.isCancel(err)) {
                         setQuickSearchResLoading(false)
                     }
+                    if (err.response) {
+                        setErrorMessage("City was not found")
+                    } else if (err.request) {
+                        setErrorMessage("There is propably an network error, check your internet connection")
+                    }
+                    setQucikSearchResError(true)
+                    setQuickSearchResLoading(false)
                 }
             }, 600)
         }
@@ -80,7 +75,7 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
     useEffect(() => {
         if (searchValue === "" && quickSearchResult.length > 0) {
             const clearSearchValue = () => {
-                setQuickSearchResults([])
+                setQuickSearchResult([])
                 setQuickSearchResLoading(false)
             }
             clearSearchValue()
@@ -89,7 +84,7 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
 
     useEffect(() => {
         setSearchValue('')
-        setQuickSearchResults([])
+        setQuickSearchResult([])
     }, [isOpened])
 
     return (
@@ -129,6 +124,14 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
                                 quickSearchResult.map((result: QuickSearchItemType, index: number) => {
                                     return <SearchResultItem key={index} setOpened={setOpened} resultItem={result} />
                                 })
+                        }
+                        {
+                            quickSearchResError && !quickSearchResLoading ?
+                                <ErrorWrapper>
+                                    {errorMessage}
+                                </ErrorWrapper>
+                                :
+                                null
                         }
 
                     </SearchResult>

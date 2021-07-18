@@ -11,31 +11,55 @@ export const useGetCityByLocalization = (getCity: boolean, setGetCity: ((item: b
     const [city, setCity] = useState<any>([])
     const [cityLoading, setCityLoading] = useState(false)
     const [cityError, setCityError] = useState(false)
+    const [locationError, setLocationError] = useState(false)
+    const [locationErrorMessage, setLocationErrorMessage] = useState('')
+
+    const showPosition = (position: any) => {
+        const { latitude, longitude } = position.coords
+        setCityCoords({
+            latitude,
+            longitude
+        })
+    }
+
+    const showError = (error: any) => {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                setLocationErrorMessage("Access to Location is denied")
+                setLocationError(true)
+                break;
+            case error.POSITION_UNAVAILABLE:
+                setLocationErrorMessage("Location information is unavailable")
+                setLocationError(true)
+                break;
+            case error.TIMEOUT:
+                setLocationErrorMessage("Location couldn't be found, try refreshing")
+                setLocationError(true)
+                break;
+            case error.UNKNOWN_ERROR:
+                setLocationErrorMessage("An unknown error occurred, try refreshing")
+                setLocationError(true)
+                break;
+        }
+    }
 
     useEffect(() => {
-        if (getCity) {
+        if (getCity !== false) {
             const getCoords = () => {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    const { latitude, longitude } = position.coords
-                    console.log(latitude)
-                    setCityCoords({
-                        latitude,
-                        longitude
-                    })
-                });
+                if (navigator.geolocation) {
+                    //@ts-ignore
+                    navigator.geolocation.getCurrentPosition(showPosition, showError)
+                } else {
+                    setLocationErrorMessage('Geolocation is not supported by this browser.')
+                }
             }
-            getCoords()
+            getCoords();
         }
     }, [getCity])
 
     useEffect(() => {
-        console.log(city)
-    }, [city])
-
-    useEffect(() => {
         if (cityCoords.latitude !== 0) {
             const getCity = (cityCoords: any) => {
-                console.log('xd')
                 setCityLoading(true)
                 setCityError(false)
                 setTimeout(() => {
@@ -45,30 +69,21 @@ export const useGetCityByLocalization = (getCity: boolean, setGetCity: ((item: b
                             setCity([{
                                 id: data.id,
                                 name: data.name,
-                                country: data.sys.country,
-                                temp: data.main.temp,
-                                temp_min: data.main.temp_min,
-                                temp_max: data.main.temp_max,
-                                sunrise: data.sys.sunrise,
-                                sunset: data.sys.sunset,
-                                weatherName: data.weather[0].main,
-                                weatherDesc: data.weather[0].description,
-                                weatherIcon: data.weather[0].icon
                             }])
                             setCityLoading(false)
+                            setCityError(false)
                         })
                         .catch((e) => {
                             console.log(e)
                             setCityError(true)
+                            setCityLoading(false)
                         })
                 }, 1500)
             }
             getCity(cityCoords)
             setGetCity(false)
-        } else {
-            setCityError(true)
         }
     }, [cityCoords])
 
-    return [city, cityLoading, cityError] as const
+    return [city, cityLoading, cityError, locationError, locationErrorMessage] as const
 }

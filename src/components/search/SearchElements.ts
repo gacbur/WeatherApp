@@ -98,3 +98,8 @@ export const LoadingWrapper = styled.div`
     justify-content: center;
     padding:2em 0em;
 `
+
+export const ErrorWrapper = styled.div`
+`
+
+export const NoResultsWrapper = styled.div``

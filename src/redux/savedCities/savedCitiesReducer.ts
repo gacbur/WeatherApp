@@ -6,7 +6,7 @@ interface InitialStateI {
 }
 
 const initialState: InitialStateI = {
-    cities: localStorage.getItem('savedCities') ? JSON.parse(localStorage.getItem('pinnedJobs') || '{}') : []
+    cities: localStorage.getItem('savedCities') ? JSON.parse(localStorage.getItem('savedCities') || '{}') : []
 }
 
 const savedCitiesReducer = (state: InitialStateI = initialState, action: SavedCitiesDispatchTypes): InitialStateI => {

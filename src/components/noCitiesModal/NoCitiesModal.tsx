@@ -14,23 +14,22 @@ import { NoCititesModalWrapper, MainContent, ButtonsWrapper, LocaliztionButton, 
 
 import { MdMyLocation } from 'react-icons/md'
 import { BiSearch } from 'react-icons/bi'
+import { BsExclamationTriangleFill } from 'react-icons/bs'
 
 const NoCitiesModal = () => {
 
     const dispatch = useDispatch()
 
     const [searchActive, setSearchActive] = useState<boolean>(false)
-
     const [getCity, setGetCity] = useState<boolean>(false)
 
-    const [city, cityLoading, cityError] = useGetCityByLocalization(getCity, setGetCity)
+    const [city, cityLoading, cityError, locationError, locationErrorMessage] = useGetCityByLocalization(getCity, setGetCity)
 
     const cities = useSelector((state: RootStore) => state.savedCities.cities)
 
     useEffect(() => {
         if (city.length > 0) {
             const setCity = () => {
-                console.log('XDDDD')
                 if (cities.find(item => item.id === city[0].id)) {
                     return null
                 } else {
@@ -39,7 +38,7 @@ const NoCitiesModal = () => {
             }
             setCity()
         }
-    }, [city])
+    }, [city, cities, dispatch])
 
     return (
         <NoCititesModalWrapper citiesLengthEqualZero={cities.length === 0}>
@@ -52,8 +51,10 @@ const NoCitiesModal = () => {
                     <LocaliztionButton
                         onClick={() => setGetCity(true)}
                     >
-                        {!cityLoading && <span>Add by current localization <i className="icon"><MdMyLocation /></i></span>}
+                        {!cityLoading && !cityError && !locationError ? <span>Add by current localization <i className="icon"><MdMyLocation /></i></span> : null}
                         {cityLoading && <span>Getting the location <i className="icon"><ClipLoader color="white" size={25} /></i></span>}
+                        {cityError && <span>Failed getting city, Try refreshing! <i className="icon"><BsExclamationTriangleFill /></i></span>}
+                        {locationError && <span>{locationErrorMessage} <i className="icon"><BsExclamationTriangleFill /></i></span>}
                     </LocaliztionButton>
                     <SearchByCityButton
                         onClick={() => setSearchActive(true)}
