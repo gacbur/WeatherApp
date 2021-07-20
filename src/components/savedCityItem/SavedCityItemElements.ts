@@ -5,11 +5,11 @@ export const SavedCityItemWrapper = styled.div`
     overflow: hidden;
     min-height: 520px;
     width:330px;
-    background-color: #98eafa;
+    background: ${(props: { color: string }) => props.color === 'day' ? 'rgb(153,238,252)' : 'rgb(86,66,156)'};
+    background: ${(props: { color: string }) => props.color === 'day' ? 'linear-gradient(0deg, rgba(153,238,252,1) 0%, rgba(59,178,240,1) 100%)' : 'linear-gradient(0deg, rgba(86,66,156,1) 0%, rgba(59,72,166,1) 100%)'};
     border-radius: 20px;
     box-shadow: 0 0px 16px rgba(0,0,0,.2);
-    
-    
+    color: ${(props: { color: string }) => props.color === 'day' ? 'rgba(0,0,0,.65)' : 'rgba(255,255,255,.95)'} !important;
 `
 
 export const SavedCityLoadingOverlay = styled.div`
@@ -21,7 +21,7 @@ export const SavedCityLoadingOverlay = styled.div`
     left:0;
     right:0;
     bottom:0;
-    background-color: rgba(0,0,0,.3);
+    background-color: white;
     opacity: ${(props: { isActive: boolean }) => props.isActive ? 1 : 0};
     visibility: ${(props: { isActive: boolean }) => props.isActive ? 'visible' : 'hidden'};
     transition: .2s;
@@ -32,42 +32,41 @@ export const SavedCityItemContent = styled.div`
     flex-direction: column;
     align-items: center;
     padding:2em 1em;
-    
-    .options-btn-cnt{
-        display: flex;
-        width:100% !important;
-        margin-bottom: 1em;
 
-        .options-btn{
-            margin-right: .5em;
-            background-color: transparent;
-            border:none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            color: rgba(0,0,0,.7);
-            height: 25px;
-            width:40px;
-            margin-left: auto;
-            transition:.2s;
-        
-            &:hover{
-                color: rgba(0,0,0,.5)
-            }
+    .options-btn-cnt{
+    position: relative;
+    display: flex;
+    width:100% !important;
+    margin-bottom: 1em;
+
+    .options-btn{
+        color:white;
+        margin-right: .5em;
+        background-color: transparent;
+        border:none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 32px;
+        height: 25px;
+        width:40px;
+        margin-left: auto;
+        transition:.2s;
+    
+        &:hover{
+            
         }
     }
+}
 
     .city-name{
         font-size: 30px;
-        color:rgba(0,0,0,.65);
     }
 
     .weather-desc{
         font-size: 17px;
         margin-top:1.8em;
-        color:rgba(0,0,0,.5);
     }
 
     .weather-icon{
@@ -78,7 +77,6 @@ export const SavedCityItemContent = styled.div`
     .temp-main{
         font-size: 62px;
         padding-left:.4em;
-        color:rgba(0,0,0,.65);
     }
 `
 
@@ -86,7 +84,6 @@ export const MinMaxTempCnt = styled.div`
     width:70%;
     display: flex;
     margin-top: 2.2em;
-    color:rgba(0,0,0,.65);
 
     .temp-wrapper{
         display: flex;
