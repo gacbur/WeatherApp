@@ -15,7 +15,8 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io'
 type SavedCityOptionsProps = {
     cityId: number,
     setOptionsOpened: any,
-    optionsButtonRef: any
+    optionsButtonEl: any,
+    CityOptionsEl: any
 }
 
 const Options = [
@@ -24,19 +25,17 @@ const Options = [
     { id: 3, name: 'Move down', icon: <IoIosArrowDown /> },
 ]
 
-const SavedCityOptions: FC<SavedCityOptionsProps> = ({ cityId, setOptionsOpened, optionsButtonRef }) => {
-
-    const CityOptionsEl = useRef(null)
+const SavedCityOptions: FC<SavedCityOptionsProps> = ({ cityId, setOptionsOpened, optionsButtonEl, CityOptionsEl }) => {
 
     const dispatch = useDispatch()
 
     const cities = useSelector((state: RootStore) => state.savedCities.cities)
 
-    const useClickOutsideOptions = (CityOptionsEl: any, optionsButtonRef: any) => {
+    const useClickOutsideOptions = (CityOptionsEl: any, optionsButtonEl: any) => {
         useEffect(() => {
             const handleClickOutside = (event: any) => {
                 if (CityOptionsEl.current && !CityOptionsEl.current.contains(event.target)) {
-                    if (optionsButtonRef.current && !optionsButtonRef.current.contains(event.target)) {
+                    if (optionsButtonEl.current && !optionsButtonEl.current.contains(event.target)) {
                         setOptionsOpened(false)
                     }
                 }
@@ -45,10 +44,10 @@ const SavedCityOptions: FC<SavedCityOptionsProps> = ({ cityId, setOptionsOpened,
             return () => {
                 document.removeEventListener("mousedown", handleClickOutside);
             };
-        }, [CityOptionsEl, optionsButtonRef]);
+        }, [CityOptionsEl, optionsButtonEl]);
     }
 
-    useClickOutsideOptions(CityOptionsEl, optionsButtonRef)
+    useClickOutsideOptions(CityOptionsEl, optionsButtonEl)
 
     const handleBtnAction = (actionId: number) => {
         if (actionId === 1) {

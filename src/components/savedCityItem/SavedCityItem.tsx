@@ -1,12 +1,14 @@
 import { FC, useState, useEffect, useRef } from 'react'
 
+import { useHistory } from 'react-router-dom'
+
 import axios from 'axios'
 
 import SavedCityOptions from '../savedCityOptions/SavedCityOptions'
 
 import { QuickSearchItemType as City } from '../../components/search/Search'
 
-import { SavedCityItemWrapper, SavedCityLoadingOverlay, SavedCityItemContent, MinMaxTempCnt } from './SavedCityItemElements'
+import { SavedCityItemWrapper, SavedCityLoadingOverlay, SavedCityErrorOverlay, SavedCityItemContent, MinMaxTempCnt } from './SavedCityItemElements'
 
 import { BsThreeDots } from 'react-icons/bs'
 
@@ -17,7 +19,7 @@ type SavedCityItemProps = {
     setOpened: (open: boolean) => void;
 }
 
-type CityProperties = {
+export type CityProperties = {
     id: number,
     name: string,
     country: string,
@@ -37,6 +39,8 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
 
     const { id } = city
 
+    const history = useHistory()
+
     const [cityProperties, setCityProperties] = useState<CityProperties[]>([])
     const [cityPropertiesLoading, setCityPropertiesLoading] = useState<boolean>(false)
     const [cityPropertiesError, setCityPropertiesError] = useState<boolean>(false)
@@ -44,12 +48,12 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
     const [cityItemColor, setCityItemColor] = useState<string>('day')
     const [optionsOpened, setOptionsOpened] = useState<boolean>(false)
 
-    const optionsButtonRef = useRef(null)
+    const CityOptionsEl = useRef(null)
+    const optionsButtonEl = useRef(null)
 
     useEffect(() => {
         if (cityProperties[0]) {
             const handleItemColor = (cityProperties: CityProperties[]) => {
-
                 const currentHour = new Date(cityProperties[0].dt * 1000 + (cityProperties[0].timezone * 1000)).getHours() - 1
 
                 const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours()
@@ -66,20 +70,12 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
     }, [cityProperties])
 
     useEffect(() => {
-        console.log(cityItemColor)
-    }, [cityItemColor])
-
-
-    useEffect(() => {
-
         const getCityProperties = async () => {
             setCityPropertiesLoading(true)
             setTimeout(async () => {
-
                 try {
                     const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
                     const data = await result.data
-                    console.log(data)
                     setCityProperties([{
                         id: data.id,
                         name: data.name,
@@ -107,23 +103,41 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
         getCityProperties()
     }, [id])
 
+    const handleGoToCityPage = (e: any, optionsButtonEl: any, CityOptionsEl: any) => {
+        if (optionsButtonEl.current && optionsButtonEl.current.contains(e.target)) {
+            return null
+        }
+        else if (CityOptionsEl.current && CityOptionsEl.current.contains(e.target)) {
+            return null
+        }
+        else {
+            history.push(`/weather-item/${id}`)
+        }
+    }
+
     return (
-        <SavedCityItemWrapper color={cityItemColor}>
+        <SavedCityItemWrapper
+            color={cityItemColor}
+            onClick={(e) => handleGoToCityPage(e, optionsButtonEl, CityOptionsEl)}
+        >
             <SavedCityLoadingOverlay isActive={cityPropertiesLoading}>
                 <ClipLoader color="lightblue" size={105} />
             </SavedCityLoadingOverlay>
+            <SavedCityErrorOverlay isActive={cityPropertiesError}>
+                <h4>Sorry, failed getting the weather information. Try refreshing</h4>
+            </SavedCityErrorOverlay>
             {
                 cityProperties.length > 0 &&
                 <SavedCityItemContent color={cityItemColor}>
                     <div className="options-btn-cnt">
                         <button
-                            ref={optionsButtonRef}
                             className="options-btn"
+                            ref={optionsButtonEl}
                             onClick={() => setOptionsOpened(prevState => !prevState)}
                         >
                             <BsThreeDots />
                         </button>
-                        {optionsOpened && <SavedCityOptions cityId={id} setOptionsOpened={setOptionsOpened} optionsButtonRef={optionsButtonRef} />}
+                        {optionsOpened && <SavedCityOptions cityId={id} setOptionsOpened={setOptionsOpened} optionsButtonEl={optionsButtonEl} CityOptionsEl={CityOptionsEl} />}
                     </div>
                     <h2 className="city-name">{cityProperties[0].name}, {cityProperties[0].country}</h2>
                     <h4 className="weather-desc">{cityProperties[0].weatherDesc}</h4>

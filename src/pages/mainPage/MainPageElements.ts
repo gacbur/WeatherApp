@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 export const MainPageWrapper = styled.div`
     color: ${props => props.theme.TextColorMain};
-    height:93vh;
+    position:relative;
     width:100%;
+    height: 93vh;
     display: flex;
     flex-direction: column;
     align-items: center;
