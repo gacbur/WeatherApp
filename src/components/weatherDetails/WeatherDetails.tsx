@@ -4,6 +4,10 @@ import axios from 'axios'
 
 import { WeatherDetailsWrapper, ButtonsWrapper, DetailsCnt, Space } from './WeatherDetailsElements'
 
+import FourtyEightHoursItem from '../fourtyEightHoursItem/FourtyEightHoursItem'
+import SevenDaysItem from '../sevenDaysItem/SevenDaysItem'
+
+
 import { FourtyEightHours, SevenDays } from './WeatherDetailsTypes'
 
 type WeatherDetailsProps = {
@@ -24,29 +28,34 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
 
     useEffect(() => {
         const getWeatherDetails = async () => {
-            const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}04&exclude=current,minutely&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
+            const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}04&exclude=minutely&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
             const data = await result.data
-            setFourtyEightHours([
+
+            console.log(data)
+
+            setFourtyEightHours(
                 data.hourly.map((item: any) => {
                     return {
                         weatherId: item.weather[0].id,
                         weatherMain: item.weather[0].main,
                         weatherDesc: item.weather[0].description,
                         weatherIcon: item.weather[0].icon,
+                        dt: item.dt,
                         temp: item.temp,
                         humidity: item.humidity,
                         pressure: item.pressure
                     }
                 })
-            ])
-            setSevenDays([
+            )
+            setSevenDays(
                 data.daily.map((item: any) => {
                     return {
                         weatherId: item.weather[0].id,
                         weatherMain: item.weather[0].main,
                         weatherDesc: item.weather[0].description,
                         weatherIcon: item.weather[0].icon,
-                        temp: item.temp,
+                        dt: item.dt,
+                        temp: item.temp.day,
                         humidity: item.humidity,
                         pressure: item.pressure,
                         sunriseTime: item.sunrise,
@@ -57,16 +66,11 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
                         nightTemp: item.temp.night
                     }
                 })
-            ])
-            console.log(data)
+            )
         }
         getWeatherDetails()
     }, [])
 
-    useEffect(() => {
-        console.log(fourtyEightHours)
-        console.log(sevenDays)
-    }, [sevenDays])
 
     return (
         <WeatherDetailsWrapper>
@@ -88,23 +92,26 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
             </ButtonsWrapper>
             <Space />
             {fourtyEightHours.length > 0 && sevenDays.length > 0 ? <DetailsCnt>
-                {/* {
+                {
                     pickedDetails === "fourtyEightHours" &&
                     <>
                         {
-                            fourtyEightHours.map(item => {
-                                return {
-
-                                }
+                            fourtyEightHours.map((weatherItem, index) => {
+                                return <FourtyEightHoursItem weatherItem={weatherItem} key={index} />
                             })
                         }
                     </>
-                } */}
-                {/* {
-                    pickedDetails === "sevenDays" && {
-
-                    }
-                } */}
+                }
+                {
+                    pickedDetails === "sevenDays" &&
+                    <>
+                        {
+                            sevenDays.map((weatherItem, index) => {
+                                return <SevenDaysItem weatherItem={weatherItem} key={index} />
+                            })
+                        }
+                    </>
+                }
             </DetailsCnt> : null}
         </WeatherDetailsWrapper>
     )

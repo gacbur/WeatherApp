@@ -46,6 +46,11 @@ export const Space = styled.hr`
 `
 
 export const DetailsCnt = styled.div`
+    padding:.8em 0em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
     margin:0em 2em;
     height:500px;
     background-color: rgba(255,255,255,.2);

@@ -3,6 +3,7 @@ export type FourtyEightHours = {
     weatherMain: string,
     weatherDesc: string,
     weatherIcon: string,
+    dt: number,
     temp: number,
     humidity: number,
     pressure: number
@@ -13,6 +14,7 @@ export type SevenDays = {
     weatherMain: string,
     weatherDesc: string,
     weatherIcon: string,
+    dt: number,
     temp: number,
     humidity: number,
     pressure: number,

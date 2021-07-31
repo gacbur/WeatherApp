@@ -54,7 +54,13 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
     useEffect(() => {
         if (cityProperties[0]) {
             const handleItemColor = (cityProperties: CityProperties[]) => {
-                const currentHour = new Date(cityProperties[0].dt * 1000 + (cityProperties[0].timezone * 1000)).getHours() - 1
+
+                const d = new Date()
+                const localTime = d.getTime()
+                const localOffset = d.getTimezoneOffset() * 60000
+                const utc = localTime + localOffset
+                const atlanta = utc + (1000 * + cityProperties[0].timezone)
+                const currentHour = new Date(atlanta).getHours()
 
                 const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours()
                 const sunset = new Date((cityProperties[0].sunset + cityProperties[0].timezone) * 1000).getHours()
