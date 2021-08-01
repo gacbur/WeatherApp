@@ -1,11 +1,13 @@
 export const darkTheme = {
     navColor: '#2d333b',
     backgroundColor: '#22272e',
-    elementsBackgroundColor: 'white',
+    elementsBackgroundColor: '#464a4f',
     elementsBorder: 'lightgray',
-    TextColorMain: '#cdd9e5',
+    TextColorMain: 'rgba(255,255,255,.7)',
     TextColorSecondary: 'darkgray',
-    LinkColor: 'lightblue'
+    LinkColor: 'lightblue',
+    NewCityCardIconColor: 'rgba(255,255,255,.2)',
+    SearchCityModalColor: 'rgba(0,0,0,.9)'
 };
 
 export const lightTheme = {
@@ -13,7 +15,9 @@ export const lightTheme = {
     backgroundColor: '#ffffff',
     elementsBackgroundColor: 'white',
     elementsBorder: 'lightgray',
-    TextColorMain: '#24292e',
+    TextColorMain: 'rgba(0,0,0,.7)',
     TextColorSecondary: 'darkgray',
-    LinkColor: 'blue'
+    LinkColor: 'blue',
+    NewCityCardIconColor: 'rgba(0,0,0,.04)',
+    SearchCityModalColor: 'rgba(255,255,255,.98)'
 }

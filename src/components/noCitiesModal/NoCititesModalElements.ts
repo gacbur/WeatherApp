@@ -9,7 +9,7 @@ export const NoCititesModalWrapper = styled.div`
     right:0px;
     bottom:0px;
     top:0px;
-    background-color: rgba(0,0,0,.6);
+    background-color: rgba(0,0,0,.3);
     opacity: ${(props: { citiesLengthEqualZero: boolean }) => props.citiesLengthEqualZero ? 1 : 0};
     visibility: ${(props: { citiesLengthEqualZero: boolean }) => props.citiesLengthEqualZero ? 'visible' : 'hidden'};
     transition: .3s;
@@ -17,17 +17,16 @@ export const NoCititesModalWrapper = styled.div`
 
 export const MainContent = styled.div`
     width:95%;
-    min-height:570px;
     max-width:550px;
     padding:4em 3em;
-    background-color: white;
+    background-color: ${props => props.theme.elementsBackgroundColor};
     border-radius: 20px;
     box-shadow: 0 5px 18px rgba(0,0,0,.2);
 
     .title-big{
         text-align: center;
         font-size: 24px;
-        color: rgba(0,0,0,.7)
+        color: ${props => props.theme.TextColorMain};
     }
 
     .title-small{
@@ -35,7 +34,7 @@ export const MainContent = styled.div`
         display: block;
         text-align: center;
         margin:5.5em 0em 1.5em 0em;
-        color: rgba(0,0,0,.7)
+        color: ${props => props.theme.TextColorMain};
     }
 `
 

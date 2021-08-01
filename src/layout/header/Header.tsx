@@ -3,6 +3,7 @@ import { FC } from 'react'
 import { HeaderWrapper, Logo, ThemeSwitchBtn } from './HeaderElements'
 
 import { FaMoon, FaSun } from 'react-icons/fa'
+import { TiWeatherPartlySunny } from 'react-icons/ti'
 
 type HeaderProps = {
     theme: string,
@@ -15,7 +16,7 @@ const Header: FC<HeaderProps> = ({ theme, toggleTheme }) => {
         <HeaderWrapper>
             <Logo to="/">
                 <h2>
-                    Weather app
+                    <TiWeatherPartlySunny className='icon' /> Weather Forecast
                 </h2>
             </Logo>
             <ThemeSwitchBtn

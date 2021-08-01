@@ -4,7 +4,7 @@ export const MainPageWrapper = styled.div`
     color: ${props => props.theme.TextColorMain};
     position:relative;
     width:100%;
-    height: 93vh;
+    min-height: 93vh;
     display: flex;
     flex-direction: column;
     align-items: center;

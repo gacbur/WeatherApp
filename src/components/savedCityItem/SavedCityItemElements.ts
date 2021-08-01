@@ -29,7 +29,7 @@ export const SavedCityLoadingOverlay = styled.div`
     left:0;
     right:0;
     bottom:0;
-    background-color: white;
+    background-color: ${props => props.theme.elementsBackgroundColor};
     opacity: ${(props: { isActive: boolean }) => props.isActive ? 1 : 0};
     visibility: ${(props: { isActive: boolean }) => props.isActive ? 'visible' : 'hidden'};
     transition: .2s;

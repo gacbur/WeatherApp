@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const SingleCityWeatherWrapper = styled.div`
-
     color: ${props => props.theme.TextColorMain};
     display: flex;
     justify-content: center;
@@ -12,7 +11,8 @@ export const SingleCityWeatherContent = styled.div`
     position:relative;
     overflow: hidden;
     padding:3em 4em;
-    margin: 2em 0em;
+    margin-top: 2em;
+    margin-bottom: 3em;
     width: 95%;
     min-height: 400px;
     max-width: 1300px;
@@ -21,14 +21,16 @@ export const SingleCityWeatherContent = styled.div`
     background: ${(props: { color: string }) => props.color === 'day' ? 'rgb(153,238,252)' : 'rgb(86,66,156)'};
     background: ${(props: { color: string }) => props.color === 'day' ? 'linear-gradient(0deg, rgba(153,238,252,1) 0%, rgba(59,178,240,1) 100%)' : 'linear-gradient(0deg, rgba(86,66,156,1) 0%, rgba(59,72,166,1) 100%)'};
     color: ${(props: { color: string }) => props.color === 'day' ? 'rgba(0,0,0,.65)' : 'rgba(255,255,255,.95)'};
-    margin-top: 3.5em;
+    margin-top: 2.5em;
     transition: 1s;
 `
+
 
 export const MainWeatherInfo = styled.div`
     display: flex;
     flex-direction:column;
     align-items:center;
+    width:100%;
 
     .city-name{
         font-size: 35px;
@@ -51,9 +53,9 @@ export const MainWeatherInfo = styled.div`
 `
 
 export const MinMaxTempCnt = styled.div`
-    width:30%;
+    width:27%;
     display: flex;
-    margin-top: .8em;
+    margin-top: .3em;
 
     .temp-wrapper{
         display: flex;
@@ -66,11 +68,11 @@ export const MinMaxTempCnt = styled.div`
         }
 
         .temp-type{
-            font-size: 15px;
+            font-size: 12px;
         }
 
         .temp{
-            font-size: 37px;
+            font-size: 28px;
         }
     }
 `
@@ -91,7 +93,7 @@ export const SingleCityWeatherLoading = styled.div`
     left:0;
     right:0;
     bottom:0;
-    background-color: white;
+    background-color: ${props => props.theme.elementsBackgroundColor};
     opacity: ${(props: { isActive: boolean }) => props.isActive ? 1 : 0};
     visibility: ${(props: { isActive: boolean }) => props.isActive ? 'visible' : 'hidden'};
     transition: .2s;`

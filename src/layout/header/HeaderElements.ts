@@ -20,13 +20,21 @@ export const Logo = styled(Link)`
     transition: .3s;
 
     h2{
+        display: flex;
+        align-items: center;
         font-size: 23px;
+        font-weight: 500;
     }
 
     i{
         display: flex;
         font-size: 26px;
         margin-left: .3em;
+    }
+
+    .icon{
+        margin-right: .3em;
+        font-size: 28px;
     }
 `
 

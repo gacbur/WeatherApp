@@ -78,19 +78,20 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
             <ButtonsWrapper>
                 <button
                     name="fourtyEightHours"
+                    className={pickedDetails !== 'fourtyEightHours' ? 'active' : ''}
                     onClick={(e) => handleChangePickedDetails(e)}
                 >
                     48 hours
                 </button>
                 <button
                     name="sevenDays"
+                    className={pickedDetails !== 'sevenDays' ? 'active' : ''}
                     onClick={(e) => handleChangePickedDetails(e)}
 
                 >
                     7 days
                 </button>
             </ButtonsWrapper>
-            <Space />
             {fourtyEightHours.length > 0 && sevenDays.length > 0 ? <DetailsCnt>
                 {
                     pickedDetails === "fourtyEightHours" &&
@@ -112,7 +113,10 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
                         }
                     </>
                 }
-            </DetailsCnt> : null}
+            </DetailsCnt>
+                :
+                null
+            }
         </WeatherDetailsWrapper>
     )
 }

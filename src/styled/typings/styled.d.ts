@@ -3,11 +3,13 @@ import 'styled-components';
 declare module 'styled-components' {
     export interface DefaultTheme {
         navColor: string,
-        backgroundColor: string;
+        backgroundColor: string,
         elementsBackgroundColor: string;
-        elementsBorder: string;
+        elementsBorder: string,
         TextColorMain: string,
-        TextColorSecondary: string;
-        LinkColor: string
+        TextColorSecondary: string,
+        LinkColor: string,
+        NewCityCardIconColor: string,
+        SearchCityModalColor: string
     }
 }

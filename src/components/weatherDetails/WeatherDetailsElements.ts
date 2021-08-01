@@ -10,7 +10,9 @@ export const WeatherDetailsWrapper = styled.div`
 
 export const ButtonsWrapper = styled.div`
 display: flex;
-margin-top: 1em;
+margin-top: 3em;
+margin-left: 2em;
+margin-bottom: 1.5em;
 
 button + button{
     margin-left:1em;
@@ -24,7 +26,6 @@ button{
     height:45px;
     width:125px;
     font-size: 16px;
-    border-radius: 30px;
     background-color: #ae4bc9;
     border:none;
     box-shadow: 0 0 8px rgba(0,0,0,.3);
@@ -32,6 +33,10 @@ button{
     font-weight: 500;
     transition: .2s;
     
+    &.active{
+        opacity:.7;
+    }
+
     &:hover{
         opacity:.9;
     }

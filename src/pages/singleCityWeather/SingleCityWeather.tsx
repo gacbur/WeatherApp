@@ -34,10 +34,6 @@ export type CityWeatherMainProperties = {
     weatherName: string,
     weatherDesc: string,
     weatherIcon: string
-    windSpeed: number
-    windDeg: number,
-    windGust: number,
-
 }
 
 const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
@@ -57,7 +53,6 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
                 try {
                     const result = await axios.get(`https://api.openweathermap.org/data/2.5/weather?id=${id}&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
                     const data = await result.data
-                    console.log(data)
                     setMainInfo([{
                         id: data.id,
                         name: data.name,
@@ -74,9 +69,6 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
                         weatherName: data.weather[0].main,
                         weatherDesc: data.weather[0].description,
                         weatherIcon: data.weather[0].icon,
-                        windSpeed: data.wind.speed,
-                        windDeg: data.wind.deg,
-                        windGust: data.wind.gust,
                     }])
                     setMainInfoLoading(false)
                     setMainInfoError(false)
@@ -90,13 +82,24 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
         getMainInfo()
     }, [id])
 
+
+    useEffect(() => {
+        console.log(mainInfo)
+    }, [mainInfo])
+
     useEffect(() => {
         if (mainInfo[0]) {
-            const handleItemColor = (mainInfo: CityProperties[]) => {
-                const currentHour = new Date(mainInfo[0].dt * 1000 + (mainInfo[0].timezone * 1000)).getHours() - 1
+            const handleItemColor = (cityProperties: CityProperties[]) => {
 
-                const sunrise = new Date((mainInfo[0].sunrise + mainInfo[0].timezone) * 1000).getHours()
-                const sunset = new Date((mainInfo[0].sunset + mainInfo[0].timezone) * 1000).getHours()
+                const d = new Date()
+                const localTime = d.getTime()
+                const localOffset = d.getTimezoneOffset() * 60000
+                const utc = localTime + localOffset
+                const atlanta = utc + (1000 * + cityProperties[0].timezone)
+                const currentHour = new Date(atlanta).getHours()
+
+                const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours()
+                const sunset = new Date((cityProperties[0].sunset + cityProperties[0].timezone) * 1000).getHours()
 
                 if (sunrise <= currentHour && currentHour < sunset) {
                     setCityItemColor('day')
@@ -116,16 +119,16 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
                         <h2 className="city-name">{mainInfo[0].name}, {mainInfo[0].country}</h2>
                         <img className="weather-icon" src={`http://openweathermap.org/img/wn/${mainInfo[0].weatherIcon}@2x.png`} alt='' />
                         <h4 className="weather-desc">{mainInfo[0].weatherName + ", " + mainInfo[0].weatherDesc}</h4>
-                        <h2 className="temp-main">{mainInfo[0].temp.toFixed(0) + "°"}</h2>
+                        <h2 className="temp-main">{mainInfo[0].temp.toFixed(0) + "°C"}</h2>
                         <MinMaxTempCnt>
                             <div className="temp-wrapper">
                                 <h6 className="temp-type">max</h6>
-                                <h5 className="temp">{mainInfo[0].temp_max.toFixed(0) + "°"}</h5>
+                                <h5 className="temp">{mainInfo[0].temp_max.toFixed(0) + "°C"}</h5>
 
                             </div>
                             <div className="temp-wrapper">
                                 <h6 className="temp-type">min</h6>
-                                <h5 className="temp">{mainInfo[0].temp_min.toFixed(0) + "°"}</h5>
+                                <h5 className="temp">{mainInfo[0].temp_min.toFixed(0) + "°C"}</h5>
                             </div>
                         </MinMaxTempCnt>
                     </MainWeatherInfo>

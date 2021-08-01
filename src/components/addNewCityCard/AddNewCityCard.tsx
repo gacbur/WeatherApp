@@ -18,9 +18,10 @@ import { useGetCityByLocalization } from '../../hooks/useGetCityByLocalization'
 
 type AddNewCityCardProps = {
     setSearchModalOpened: (open: boolean) => void;
+    flatViewAddNew: boolean
 }
 
-const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened }) => {
+const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened, flatViewAddNew }) => {
 
     const dispatch = useDispatch()
 
@@ -44,11 +45,15 @@ const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened }) => {
     }, [city, cities, dispatch])
 
     return (
-        <AddNewCityCardWrapper>
+        <AddNewCityCardWrapper
+            flatView={flatViewAddNew}
+        >
             <i className="icon-background">
                 <BsFillPlusCircleFill />
             </i>
-            <ButtonsWrapper>
+            <ButtonsWrapper
+                flatView={flatViewAddNew}
+            >
                 <SearchByCityButton
                     onClick={() => setSearchModalOpened(true)}
                 >

@@ -8,7 +8,7 @@ export const SearchWrapper = styled.div`
     right:0px;
     bottom:0px;
     top:0px;
-    background-color: rgba(255,255,255,.96);
+    background-color: ${props => props.theme.SearchCityModalColor};
     opacity: ${(props: { opened: any }) => props.opened ? 1 : 0};
     visibility: ${(props: { opened: any }) => props.opened ? 'visible' : 'hidden'};
     transition: .3s;
@@ -21,9 +21,10 @@ export const CloseButton = styled.button`
         right:80px;
         border:none;
         background-color: transparent;
+        
   
         .icon{
-            color: rgba(0,0,0,.35);
+            color: ${props => props.theme.TextColorMain} !important;
             font-size: 50px;
             
             &:hover{
@@ -40,7 +41,7 @@ export const SearchBarWrapper = styled.div`
 
 export const SearchInput = styled.div`
     display: flex;
-    background-color: rgb(181, 181, 181);
+    background-color: lightgray;
     align-items: center;
     margin:.5em 3em;
     border-radius: 40px;
@@ -48,7 +49,7 @@ export const SearchInput = styled.div`
     width:1000px;
     
     input{
-        background-color: rgb(181, 181, 181);
+        background-color: lightgray;
         border:none;
         height: 90px;
         width:85%;
@@ -77,8 +78,7 @@ export const SearchInput = styled.div`
             margin-right: .4em;
             font-size: 33px;
             display: flex;
-            color:rgba(0,0,0,.5);
-
+            color: rgba(0,0,0,.5);
         }
     }
 
