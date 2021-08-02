@@ -4,6 +4,8 @@ import { ClipLoader } from 'react-spinners'
 
 import { useSelector, useDispatch } from 'react-redux'
 
+import * as Scroll from 'react-scroll';
+
 import { RootStore } from '../../redux/Store'
 import { addNewCity } from '../../redux/savedCities/savedCitiesActions'
 
@@ -31,6 +33,8 @@ const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened, flatVie
 
     const [city, cityLoading, cityError, locationError, locationErrorMessage] = useGetCityByLocalization(getCity, setGetCity)
 
+    const scroll = Scroll.animateScroll;
+
     useEffect(() => {
         if (city.length > 0) {
             const setCity = () => {
@@ -55,7 +59,14 @@ const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened, flatVie
                 flatView={flatViewAddNew}
             >
                 <SearchByCityButton
-                    onClick={() => setSearchModalOpened(true)}
+                    onClick={() => {
+                        scroll.scrollToTop({
+                            duration: 700,
+                            delay: 100,
+                            smooth: true,
+                        })
+                        setSearchModalOpened(true)
+                    }}
                 >
                     Add by city name <i className="icon"><BiSearch /></i>
                 </SearchByCityButton>

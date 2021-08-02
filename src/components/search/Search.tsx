@@ -5,6 +5,8 @@ import axios from 'axios'
 import SearchResultItem from '../searchResultItem/SearchResultItem'
 import Loading from '../loading/Loading'
 
+import { Element } from 'react-scroll'
+
 import { SearchWrapper, CloseButton, SearchBarWrapper, SearchInput, SearchResult, LoadingWrapper, ErrorWrapper } from './SearchElements'
 
 import { CgClose } from 'react-icons/cg'
@@ -112,6 +114,7 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
                         </i>
                     </span>
                 </SearchInput>
+                <Element name="scroll-to-search" />
                 {
                     searchValue.length > 0 &&
                     <SearchResult>

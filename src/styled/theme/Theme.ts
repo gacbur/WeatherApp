@@ -15,9 +15,9 @@ export const lightTheme = {
     backgroundColor: '#ffffff',
     elementsBackgroundColor: 'white',
     elementsBorder: 'lightgray',
-    TextColorMain: 'rgba(0,0,0,.7)',
+    TextColorMain: 'rgba(0,0,0,.6)',
     TextColorSecondary: 'darkgray',
     LinkColor: 'blue',
-    NewCityCardIconColor: 'rgba(0,0,0,.04)',
+    NewCityCardIconColor: 'rgba(0,0,0,.07)',
     SearchCityModalColor: 'rgba(255,255,255,.98)'
 }
