@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const SingleCityWeatherWrapper = styled.div`
-    color: ${props => props.theme.TextColorMain};
     display: flex;
     justify-content: center;
     width:100%;
@@ -22,7 +21,11 @@ export const SingleCityWeatherContent = styled.div`
     background: ${(props: { color: string }) => props.color === 'day' ? 'linear-gradient(0deg, rgba(153,238,252,1) 0%, rgba(59,178,240,1) 100%)' : 'linear-gradient(0deg, rgba(86,66,156,1) 0%, rgba(59,72,166,1) 100%)'};
     color: ${(props: { color: string }) => props.color === 'day' ? 'rgba(0,0,0,.65)' : 'rgba(255,255,255,.95)'};
     margin-top: 2.5em;
-    transition: 1s;
+
+    @media all and (max-width:900px){
+            padding:3em .2em;
+            width:100%;
+        }
 `
 
 
@@ -34,6 +37,11 @@ export const MainWeatherInfo = styled.div`
 
     .city-name{
         font-size: 35px;
+
+        @media all and (max-width:400px){
+        font-size: 31px;
+        margin-bottom: 1em;
+        }
     }
 
     .weather-desc{
@@ -49,13 +57,18 @@ export const MainWeatherInfo = styled.div`
     .temp-main{
         font-size: 62px;
         padding-left:.4em;
+
+        @media all and (max-width:400px){
+        font-size: 56px;
+        }
     }
 `
 
 export const MinMaxTempCnt = styled.div`
     width:27%;
     display: flex;
-    margin-top: .3em;
+    margin-top: .6em;
+    min-width: 200px;
 
     .temp-wrapper{
         display: flex;

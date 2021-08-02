@@ -14,17 +14,32 @@ type SavedCitiesListProps = {
 
 const SavedCitiesList: FC<SavedCitiesListProps> = ({ setOpened }) => {
 
+    const [width, setWidth] = useState<number>(0)
+
+    const getInnerWidth = () => {
+        setWidth(window.innerWidth)
+    }
+
+    useEffect(() => {
+        setWidth(window.innerWidth)
+
+        window.addEventListener('resize', getInnerWidth);
+
+        return () => window.removeEventListener('resize', getInnerWidth)
+    }, [width])
+
+
     const [flatViewAddNew, setflatViewAddNew] = useState<boolean>(false)
 
     const cities = useSelector((state: RootStore) => state.savedCities.cities)
 
     useEffect(() => {
-        if (cities.length % 3 === 0) {
+        if (cities.length % 3 === 0 && width > 1100) {
             setflatViewAddNew(true)
         } else {
             setflatViewAddNew(false)
         }
-    }, [cities])
+    }, [cities, width])
 
     return (
         <SavedCityListWrapper>

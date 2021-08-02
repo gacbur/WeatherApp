@@ -20,9 +20,14 @@ export const SearchItem = styled.div`
     font-size: 2px;
     color: rgba(0,0,0,.6);
     box-shadow: 0 0px 8px rgba(0,0,0,.1);
+    max-width:800px;
+
+    @media all and (max-width:550px){
+            width:90%;
+        }
 
     &:hover{
-        background-color: rgba(0,0,0,.2);
+        opacity: .8;
     }
 
     h4{

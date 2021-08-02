@@ -7,6 +7,18 @@ export const HeaderWrapper = styled.div`
     display: flex;
     padding: 0em 2em;
     border-bottom:1px solid #cdd9e5;
+    
+    @media all and (max-width:600px){
+        height:10vh;
+    }
+
+    @media all and (max-width:550px){
+            padding: 0em .5em;
+    }
+
+    @media all and (max-width:310px){
+        padding: 0em .2em;
+        }
 
 `
 
@@ -24,6 +36,10 @@ export const Logo = styled(Link)`
         align-items: center;
         font-size: 23px;
         font-weight: 500;
+
+        @media all and (max-width:370px){
+            font-size: 20px;
+        }
     }
 
     i{

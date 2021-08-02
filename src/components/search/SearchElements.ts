@@ -12,6 +12,8 @@ export const SearchWrapper = styled.div`
     opacity: ${(props: { opened: any }) => props.opened ? 1 : 0};
     visibility: ${(props: { opened: any }) => props.opened ? 'visible' : 'hidden'};
     transition: .3s;
+    z-index:1000;
+
 `
 
 export const CloseButton = styled.button`
@@ -21,8 +23,12 @@ export const CloseButton = styled.button`
         right:80px;
         border:none;
         background-color: transparent;
-        
-  
+
+        @media all and (max-width:1200px){
+            right:20px;
+            top:20px;
+        }
+
         .icon{
             color: ${props => props.theme.TextColorMain} !important;
             font-size: 50px;
@@ -36,6 +42,8 @@ export const CloseButton = styled.button`
 export const SearchBarWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width:100%;
     margin-top:10em;
 `
 
@@ -46,7 +54,8 @@ export const SearchInput = styled.div`
     margin:.5em 3em;
     border-radius: 40px;
     overflow: hidden;
-    width:1000px;
+    width:95%;
+    max-width:1000px;
     
     input{
         background-color: lightgray;
@@ -57,6 +66,11 @@ export const SearchInput = styled.div`
         transition: width .3s;
         padding-left:2em;
         color:rgba(0,0,0,.5);
+
+        @media all and (max-width:700px){
+            width:75%;
+            font-size: 22px;
+        }
 
         &:focus{
             outline:none;
@@ -71,6 +85,10 @@ export const SearchInput = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @media all and (max-width:700px){
+            width:25%;
+        }
 
         .icon{
             margin-top: .1em;
@@ -88,6 +106,7 @@ export const SearchResult = styled.div`
     margin-top:1.5em;
     display: flex;
     justify-content: center;
+    width:100%;
 `
 
 

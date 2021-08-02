@@ -99,35 +99,39 @@ const SevenDaysItem: FC<FourtyEightHoursItemProps> = ({ weatherItem }) => {
     return (
         <>
             {weatherItem && <SevenDaysWrapper>
-                <span className="day-date-cnt">
-                    <h5 className="day">{getDayOfTheWeek(dt)}</h5>
-                    <h5 className="date">{getDateAndMonth(dt)}</h5>
-                </span>
-                <img className="weather-icon" src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt="" />
-                <h4 className="temp">{temp.toFixed(0) + '°C'}</h4>
-                <h4 className="desc">{weatherDesc}</h4>
-                <div className="morning-temp-cnt">
-                    <h4 className="title">
-                        Morning
-                    </h4>
-                    <div className="temp">
-                        {mornTemp.toFixed(0) + '°C'}
-                    </div>
+                <div className="main-info-cnt">
+                    <span className="day-date-cnt">
+                        <h5 className="day">{getDayOfTheWeek(dt)}</h5>
+                        <h5 className="date">{getDateAndMonth(dt)}</h5>
+                    </span>
+                    <img className="weather-icon" src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt="" />
+                    <h4 className="temp">{temp.toFixed(0) + '°C'}</h4>
+                    <h4 className="desc">{weatherDesc}</h4>
                 </div>
-                <div className="day-temp-cnt">
-                    <h4 className="title">
-                        Day
-                    </h4>
-                    <div className="temp">
-                        {dayTemp.toFixed(0) + '°C'}
+                <div className="time-of-day-temp-cnt">
+                    <div className="morning-temp-cnt">
+                        <h4 className="title">
+                            Morning
+                        </h4>
+                        <div className="temp">
+                            {mornTemp.toFixed(0) + '°C'}
+                        </div>
                     </div>
-                </div>
-                <div className="night-temp-cnt">
-                    <h4 className="title">
-                        Night
-                    </h4>
-                    <div className="temp">
-                        {nightTemp.toFixed(0) + '°C'}
+                    <div className="day-temp-cnt">
+                        <h4 className="title">
+                            Day
+                        </h4>
+                        <div className="temp">
+                            {dayTemp.toFixed(0) + '°C'}
+                        </div>
+                    </div>
+                    <div className="night-temp-cnt">
+                        <h4 className="title">
+                            Night
+                        </h4>
+                        <div className="temp">
+                            {nightTemp.toFixed(0) + '°C'}
+                        </div>
                     </div>
                 </div>
 

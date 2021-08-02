@@ -112,7 +112,7 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
     }, [mainInfo])
 
     return (
-        <SingleCityWeatherWrapper >
+        <SingleCityWeatherWrapper color={cityItemColor}>
             <SingleCityWeatherContent color={cityItemColor}>
                 {mainInfo.length > 0 &&
                     <MainWeatherInfo>

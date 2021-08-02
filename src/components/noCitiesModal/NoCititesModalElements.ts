@@ -23,10 +23,29 @@ export const MainContent = styled.div`
     border-radius: 20px;
     box-shadow: 0 5px 18px rgba(0,0,0,.2);
 
+    @media all and (max-width:550px){
+        border-radius: 0px;
+        height: 100%;
+        width:100%;
+        padding:3em 1em;
+    }
+
+    @media all and (max-height:850px){
+        border-radius: 0px;
+        height: 100%;
+        width:100%;
+        padding:3em 1em;
+    }
+
     .title-big{
         text-align: center;
         font-size: 24px;
         color: ${props => props.theme.TextColorMain};
+
+        @media all and (max-width:550px){
+            font-size: 20px;
+        }
+
     }
 
     .title-small{
@@ -59,6 +78,10 @@ export const LocaliztionButton = styled.button`
     transition: .2s;
     box-shadow: 0 0px 8px rgba(0,0,0,.2);
 
+    @media all and (max-width:550px){
+            margin:1em 0em;
+        }
+
     span{
         display: flex;
     }
@@ -89,6 +112,11 @@ export const SearchByCityButton = styled.button`
     border-radius: 50px;
     transition: .2s;
     box-shadow: 0 0px 8px rgba(0,0,0,.1);
+
+    @media all and (max-width:550px){
+            margin:1em 0em;
+            font-size: 16px;
+        }
 
     .icon{
         display: flex;

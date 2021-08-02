@@ -83,8 +83,10 @@ const FourtyEightHoursItem: FC<FourtyEightHoursItemProps> = ({ weatherItem }) =>
                         {getDateAndMonth(dt)}
                     </h5>
                 </span>
-                <img className="weather-icon" src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt="" />
-                <h4 className="temp">{temp.toFixed(0) + '°C'}</h4>
+                <div className="temp-icon-cnt">
+                    <img className="weather-icon" src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt="" />
+                    <h4 className="temp">{temp.toFixed(0) + '°C'}</h4>
+                </div>
                 <h4 className="desc">{weatherDesc}</h4>
                 <div className="humidity-cnt">
                     <h6 className="humidity-title">Humidity (%):</h6>

@@ -60,6 +60,10 @@ export const SavedCityItemContent = styled.div`
     align-items: center;
     padding:2em 1em;
 
+    @media all and (max-width:400px){
+        padding:2em .3em;
+    }
+
     .options-btn-cnt{
     position: relative;
     display: flex;
@@ -111,6 +115,14 @@ export const MinMaxTempCnt = styled.div`
     width:70%;
     display: flex;
     margin-top: 2.2em;
+
+    @media all and (max-width:400px){
+        width:75%;
+    }
+
+    @media all and (max-width:300px){
+        width:70%;
+    }
 
     .temp-wrapper{
         display: flex;

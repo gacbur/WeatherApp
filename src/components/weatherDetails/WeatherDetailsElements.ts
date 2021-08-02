@@ -3,8 +3,16 @@ import styled from 'styled-components'
 export const WeatherDetailsWrapper = styled.div`
     margin-top:3em;
 
-    h4{
+    .forecasts-title{
         font-size: 19px;
+
+        @media all and (max-width:900px){
+            margin-left: 3em;
+        }
+
+        @media all and (max-width:400px){
+            margin-left: 2em;
+        }
     }
 `
 
@@ -13,6 +21,11 @@ display: flex;
 margin-top: 3em;
 margin-left: 2em;
 margin-bottom: 1.5em;
+
+@media all and (max-width:450px){
+    justify-content: center;
+    margin-left: 0em;
+}
 
 button + button{
     margin-left:1em;
@@ -32,6 +45,11 @@ button{
     color:white;
     font-weight: 500;
     transition: .2s;
+
+    @media all and (max-width:600px){
+                height:42px;
+                width:110px;
+            }
     
     &.active{
         opacity:.7;
@@ -43,13 +61,6 @@ button{
 }
 `
 
-export const Space = styled.hr`
-    margin:3em 0em;
-    height: 1px;
-    background-color: rgba(0,0,0,.2);
-    border: none;
-`
-
 export const DetailsCnt = styled.div`
     padding:.8em 0em;
     display: flex;
@@ -59,4 +70,14 @@ export const DetailsCnt = styled.div`
     margin:0em 2em;
     height:500px;
     background-color: rgba(255,255,255,.2);
+
+    @media all and (max-width:900px){
+        padding:.5em 0em;
+        margin:0em 0em;
+        }
+
+    @media all and (max-width:600px){
+        height:350px;
+    }
+
 `

@@ -11,6 +11,10 @@ export const SavedCityListWrapper = styled.div`
         justify-content: center;
         flex-wrap: wrap;
 
+        @media all and (max-width:500px){
+                margin-top:0em;
+        }
+
         & > *{
         margin:1em 1em;
         }

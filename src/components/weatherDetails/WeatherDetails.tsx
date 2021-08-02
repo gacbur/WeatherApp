@@ -2,7 +2,7 @@ import { useEffect, useState, FC } from 'react'
 
 import axios from 'axios'
 
-import { WeatherDetailsWrapper, ButtonsWrapper, DetailsCnt, Space } from './WeatherDetailsElements'
+import { WeatherDetailsWrapper, ButtonsWrapper, DetailsCnt } from './WeatherDetailsElements'
 
 import FourtyEightHoursItem from '../fourtyEightHoursItem/FourtyEightHoursItem'
 import SevenDaysItem from '../sevenDaysItem/SevenDaysItem'
@@ -74,7 +74,7 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
 
     return (
         <WeatherDetailsWrapper>
-            <h4>Forecasts:</h4>
+            <h4 className="forecasts-title">Forecasts:</h4>
             <ButtonsWrapper>
                 <button
                     name="fourtyEightHours"

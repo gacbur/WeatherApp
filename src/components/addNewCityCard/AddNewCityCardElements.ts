@@ -11,11 +11,35 @@ export const AddNewCityCardWrapper = styled.div`
     padding:${(props: { flatView: boolean }) => props.flatView ? '2em .8em' : '6em .8em'};
     background-color: ${props => props.theme.elementsBackgroundColor};
 
+    @media all and (max-width:360px){
+        width:320px;
+    }
+    @media all and (max-width:350px){
+        width:310px;
+    }
+    @media all and (max-width:340px){
+        width:300px;
+    }
+    @media all and (max-width:330px){
+        width:290px;
+    }
+    @media all and (max-width:320px){
+        width:280px;
+    }
+    @media all and (max-width:310px){
+        width:270px;
+    }
+    @media all and (max-width:300px){
+        width:260px;
+    }
+
     .icon-background{
         position: absolute;
         pointer-events: none;
+        display: flex;
         top:5%;
         left:50%;
+        margin-top: .05em;
         transform: translate(-50%, 0%);
         font-size: 180px;
         color:${props => props.theme.NewCityCardIconColor};
@@ -48,9 +72,14 @@ export const SearchByCityButton = styled.button`
     border:none;
     height:55px;
     border-radius: 50px;
-    min-width: 220px;
+    min-width: 270px;
     transition: .2s;
     box-shadow: 0 0px 8px rgba(0,0,0,.1);
+    z-index:1;
+
+    @media all and (max-width:350px){
+        min-width: 240px; 
+    }
 
     .icon{
         display: flex;
@@ -77,8 +106,13 @@ export const LocaliztionButton = styled.button`
     height:55px;
     border-radius: 50px;
     transition: .2s;
-    min-width: 220px;
+    min-width: 270px;
     box-shadow: 0 0px 8px rgba(0,0,0,.2);
+    z-index:1;
+
+    @media all and (max-width:350px){
+        min-width: 240px; 
+    }
 
     span{
         display: flex;
