@@ -30,9 +30,6 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
         const getWeatherDetails = async () => {
             const result = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}04&exclude=minutely&units=metric&appid=${process.env.REACT_APP_API_KEY}`)
             const data = await result.data
-
-            console.log(data)
-
             setFourtyEightHours(
                 data.hourly.map((item: any) => {
                     return {

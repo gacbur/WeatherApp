@@ -45,7 +45,6 @@ export const MainContent = styled.div`
         @media all and (max-width:550px){
             font-size: 20px;
         }
-
     }
 
     .title-small{

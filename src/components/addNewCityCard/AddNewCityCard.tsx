@@ -46,7 +46,7 @@ const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened, flatVie
             }
             setCity()
         }
-    }, [city, cities, dispatch])
+    }, [city, dispatch])
 
     return (
         <AddNewCityCardWrapper
@@ -71,7 +71,9 @@ const AddNewCityCard: FC<AddNewCityCardProps> = ({ setSearchModalOpened, flatVie
                     Add by city name <i className="icon"><BiSearch /></i>
                 </SearchByCityButton>
                 <LocaliztionButton
-                    onClick={() => setGetCity(true)}
+                    onClick={() => {
+                        setGetCity(true)
+                    }}
                 >
                     {!cityLoading && !cityError && !locationError ? <span>Add by localization <i className="icon"><MdMyLocation /></i></span> : null}
                     {cityLoading && <span>Getting the location <i className="icon"><ClipLoader color="white" size={25} /></i></span>}

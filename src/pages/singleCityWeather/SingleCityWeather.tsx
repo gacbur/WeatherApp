@@ -84,10 +84,6 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
 
 
     useEffect(() => {
-        console.log(mainInfo)
-    }, [mainInfo])
-
-    useEffect(() => {
         if (mainInfo[0]) {
             const handleItemColor = (cityProperties: CityProperties[]) => {
 

@@ -38,7 +38,7 @@ const NoCitiesModal = () => {
             }
             setCity()
         }
-    }, [city, cities, dispatch])
+    }, [city, dispatch])
 
     return (
         <NoCititesModalWrapper citiesLengthEqualZero={cities.length === 0}>

@@ -4,6 +4,7 @@ import axios from 'axios'
 
 export const useGetCityByLocalization = (getCity: boolean, setGetCity: ((item: boolean) => void)) => {
 
+
     const [cityCoords, setCityCoords] = useState<any>({
         latitude: 0,
         longitude: 0,
