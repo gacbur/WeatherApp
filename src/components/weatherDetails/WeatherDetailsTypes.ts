@@ -4,9 +4,12 @@ export type FourtyEightHours = {
     weatherDesc: string,
     weatherIcon: string,
     dt: number,
+    dtCurrent: number,
     temp: number,
     humidity: number,
-    pressure: number
+    pressure: number,
+    timezone: number,
+    timezone_name: string
 }
 
 export type SevenDays = {
@@ -23,5 +26,6 @@ export type SevenDays = {
     mornTemp: number,
     dayTemp: number,
     eveTemp: number,
-    nightTemp: number
+    nightTemp: number,
+    timezone: number
 }

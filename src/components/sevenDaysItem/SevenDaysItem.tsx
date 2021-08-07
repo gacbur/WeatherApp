@@ -4,11 +4,11 @@ import { SevenDays } from '../weatherDetails/WeatherDetailsTypes'
 
 import { SevenDaysWrapper } from './SevenDaysItemElements'
 
-type FourtyEightHoursItemProps = {
+type SevenDaysItemProps = {
     weatherItem: SevenDays,
 }
 
-const SevenDaysItem: FC<FourtyEightHoursItemProps> = ({ weatherItem }) => {
+const SevenDaysItem: FC<SevenDaysItemProps> = ({ weatherItem }) => {
 
     const { weatherDesc, weatherIcon, dt, mornTemp, dayTemp, nightTemp, temp } = weatherItem
 

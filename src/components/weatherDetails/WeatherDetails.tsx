@@ -2,11 +2,10 @@ import { useEffect, useState, FC } from 'react'
 
 import axios from 'axios'
 
-import { WeatherDetailsWrapper, ButtonsWrapper, DetailsCnt } from './WeatherDetailsElements'
+import { WeatherDetailsWrapper } from './WeatherDetailsElements'
 
-import FourtyEightHoursItem from '../fourtyEightHoursItem/FourtyEightHoursItem'
-import SevenDaysItem from '../sevenDaysItem/SevenDaysItem'
-
+import SevenDaysCarousel from '../sevenDaysCarousel/SevenDaysCarousel'
+import FourtyEightHoursCarousel from '../fourtyEightHoursCarousel/FourtyEightHoursCarousel'
 
 import { FourtyEightHours, SevenDays } from './WeatherDetailsTypes'
 
@@ -20,11 +19,6 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
     const [fourtyEightHours, setFourtyEightHours] = useState<FourtyEightHours[]>([])
     const [sevenDays, setSevenDays] = useState<SevenDays[]>([])
 
-    const [pickedDetails, setPickedDetails] = useState<string>('fourtyEightHours')
-
-    const handleChangePickedDetails = (e: any) => {
-        setPickedDetails(e.target.name)
-    }
 
     useEffect(() => {
         const getWeatherDetails = async () => {
@@ -38,9 +32,12 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
                         weatherDesc: item.weather[0].description,
                         weatherIcon: item.weather[0].icon,
                         dt: item.dt,
+                        dtCurrent: data.current.dt,
                         temp: item.temp,
                         humidity: item.humidity,
-                        pressure: item.pressure
+                        pressure: item.pressure,
+                        timezone: data.timezone_offset,
+                        timezone_name: data.timezone
                     }
                 })
             )
@@ -60,7 +57,8 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
                         mornTemp: item.temp.morn,
                         dayTemp: item.temp.day,
                         eveTemp: item.temp.eve,
-                        nightTemp: item.temp.night
+                        nightTemp: item.temp.night,
+                        timezone: data.timezone_offset
                     }
                 })
             )
@@ -71,50 +69,9 @@ const WeatherDetails: FC<WeatherDetailsProps> = ({ lon, lat }) => {
 
     return (
         <WeatherDetailsWrapper>
-            <h4 className="forecasts-title">Forecasts:</h4>
-            <ButtonsWrapper>
-                <button
-                    name="fourtyEightHours"
-                    className={pickedDetails !== 'fourtyEightHours' ? 'active' : ''}
-                    onClick={(e) => handleChangePickedDetails(e)}
-                >
-                    48 hours
-                </button>
-                <button
-                    name="sevenDays"
-                    className={pickedDetails !== 'sevenDays' ? 'active' : ''}
-                    onClick={(e) => handleChangePickedDetails(e)}
-
-                >
-                    7 days
-                </button>
-            </ButtonsWrapper>
-            {fourtyEightHours.length > 0 && sevenDays.length > 0 ? <DetailsCnt>
-                {
-                    pickedDetails === "fourtyEightHours" &&
-                    <>
-                        {
-                            fourtyEightHours.map((weatherItem, index) => {
-                                return <FourtyEightHoursItem weatherItem={weatherItem} key={index} />
-                            })
-                        }
-                    </>
-                }
-                {
-                    pickedDetails === "sevenDays" &&
-                    <>
-                        {
-                            sevenDays.map((weatherItem, index) => {
-                                return <SevenDaysItem weatherItem={weatherItem} key={index} />
-                            })
-                        }
-                    </>
-                }
-            </DetailsCnt>
-                :
-                null
-            }
-        </WeatherDetailsWrapper>
+            <FourtyEightHoursCarousel fourtyEightHours={fourtyEightHours} />
+            <SevenDaysCarousel sevenDays={sevenDays} />
+        </WeatherDetailsWrapper >
     )
 }
 

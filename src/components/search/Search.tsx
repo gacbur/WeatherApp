@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react'
+import { FC, useState, useEffect, useRef } from 'react'
 
 import axios from 'axios'
 
@@ -89,6 +89,12 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
         setQuickSearchResult([])
     }, [isOpened])
 
+    const searchInput = useRef<any>(null)
+
+    useEffect(() => {
+        searchInput.current && searchInput.current.focus()
+    }, [])
+
     return (
         <SearchWrapper opened={isOpened}>
             <CloseButton
@@ -101,6 +107,7 @@ const SearchBar: FC<SearchProps> = ({ setOpened, isOpened }) => {
             <SearchBarWrapper>
                 <SearchInput>
                     <input
+                        ref={searchInput}
                         type="text"
                         placeholder="City name"
                         value={searchValue}

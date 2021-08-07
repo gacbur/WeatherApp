@@ -6,23 +6,27 @@ import { FourtyEightHours } from '../weatherDetails/WeatherDetailsTypes'
 
 type FourtyEightHoursItemProps = {
     weatherItem: FourtyEightHours,
+    sliderIndex: number,
+    hoursInSlider: number[],
+    id: number
 }
 
-const FourtyEightHoursItem: FC<FourtyEightHoursItemProps> = ({ weatherItem }) => {
+const FourtyEightHoursItem: FC<FourtyEightHoursItemProps> = ({ weatherItem, sliderIndex, hoursInSlider, id }) => {
 
-    const { weatherDesc, weatherIcon, temp, humidity, pressure, dt } = weatherItem
+    const { weatherDesc, weatherIcon, temp, humidity, pressure, dtCurrent, dt, timezone, timezone_name } = weatherItem
 
-    const formatTimestamp = (timestamp: number) => {
-        const date = new Date(timestamp * 1000)
-        const hours = "0" + date.getHours()
-        const minutes = "0" + date.getMinutes()
-        const formattedTime = hours.substr(-2) + ':' + minutes.substr(-2)
-        return formattedTime
+
+    const formatTimestamp = () => {
+
+        const date = new Date(dt * 1000).toLocaleString("en-GB", { timeZone: `${timezone_name}`, hour: '2-digit' })
+        const hours = date
+        return hours;
     }
 
     const getDateAndMonth = (timestamp: number) => {
         const date = new Date(timestamp * 1000)
         let thisDate;
+
 
         let day = date.getDate();
         let month: number | string = date.getMonth();
@@ -74,30 +78,15 @@ const FourtyEightHoursItem: FC<FourtyEightHoursItemProps> = ({ weatherItem }) =>
 
     return (
         <>
-            {weatherItem && <FourtyEightHoursItemWrapper>
-                <span className="time-date-cnt">
-                    <h5 className="time">
-                        {formatTimestamp(dt).slice(0, 2) + ":00"}
-                    </h5>
-                    <h5 className="date">
-                        {getDateAndMonth(dt)}
-                    </h5>
-                </span>
-                <div className="temp-icon-cnt">
+            {weatherItem &&
+                <FourtyEightHoursItemWrapper
+                    style={{ width: `calc(100%/${hoursInSlider[sliderIndex]}` }}
+                >
+                    <p className="hours-weather__element__time">{formatTimestamp() + ":00"}</p>
+                    <p className="hours-weather__element__date">{getDateAndMonth(dt)}</p>
                     <img className="weather-icon" src={`http://openweathermap.org/img/wn/${weatherIcon}@2x.png`} alt="" />
-                    <h4 className="temp">{temp.toFixed(0) + '°C'}</h4>
-                </div>
-                <h4 className="desc">{weatherDesc}</h4>
-                <div className="humidity-cnt">
-                    <h6 className="humidity-title">Humidity (%):</h6>
-                    <h5 className="humidity-number">{humidity}</h5>
-                </div>
-                <div className="pressure-cnt">
-                    <h6 className="pressure-title">Pressure (hPa):</h6>
-                    <h5 className="presure-number">{pressure}</h5>
-                </div>
-
-            </FourtyEightHoursItemWrapper>}
+                    <h4 className="hours-weather__element__temperature">{temp.toFixed(0) + '°C'}</h4>
+                </FourtyEightHoursItemWrapper>}
         </>
     )
 }

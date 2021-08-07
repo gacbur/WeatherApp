@@ -7,7 +7,7 @@ export const darkTheme = {
     TextColorSecondary: 'darkgray',
     LinkColor: 'lightblue',
     NewCityCardIconColor: 'rgba(255,255,255,.2)',
-    SearchCityModalColor: 'rgba(0,0,0,.9)'
+    SearchCityModalColor: 'rgba(50,50,50,.97)'
 };
 
 export const lightTheme = {
@@ -19,5 +19,5 @@ export const lightTheme = {
     TextColorSecondary: 'darkgray',
     LinkColor: 'blue',
     NewCityCardIconColor: 'rgba(0,0,0,.07)',
-    SearchCityModalColor: 'rgba(255,255,255,.98)'
+    SearchCityModalColor: 'rgba(255,255,255,.97)'
 }

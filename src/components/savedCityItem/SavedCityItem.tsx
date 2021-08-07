@@ -59,11 +59,11 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
                 const localTime = d.getTime()
                 const localOffset = d.getTimezoneOffset() * 60000
                 const utc = localTime + localOffset
-                const atlanta = utc + (1000 * + cityProperties[0].timezone)
-                const currentHour = new Date(atlanta).getHours()
+                const offset = utc + (1000 * + cityProperties[0].timezone)
+                const currentHour = new Date(offset).getHours()
 
-                const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours()
-                const sunset = new Date((cityProperties[0].sunset + cityProperties[0].timezone) * 1000).getHours()
+                const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours() - 2
+                const sunset = new Date((cityProperties[0].sunset + cityProperties[0].timezone) * 1000).getHours() - 2
 
                 if (sunrise <= currentHour && currentHour < sunset) {
                     setCityItemColor('day')

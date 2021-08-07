@@ -94,8 +94,8 @@ const SingleCityWeather: FC<SingleCityWeatherProps> = ({ match }) => {
                 const atlanta = utc + (1000 * + cityProperties[0].timezone)
                 const currentHour = new Date(atlanta).getHours()
 
-                const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours()
-                const sunset = new Date((cityProperties[0].sunset + cityProperties[0].timezone) * 1000).getHours()
+                const sunrise = new Date((cityProperties[0].sunrise + cityProperties[0].timezone) * 1000).getHours() - 2
+                const sunset = new Date((cityProperties[0].sunset + cityProperties[0].timezone) * 1000).getHours() - 2
 
                 if (sunrise <= currentHour && currentHour < sunset) {
                     setCityItemColor('day')
