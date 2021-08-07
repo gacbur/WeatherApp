@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+# Weather Forecast
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+![1](https://user-images.githubusercontent.com/46655309/127913807-4d7fd8d8-c8cb-4c03-a088-beadb5342b13.JPG)
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+![2](https://user-images.githubusercontent.com/46655309/127913809-d733b74e-08cf-42b1-ab3f-bdb344d7dad4.JPG)
+![3](https://user-images.githubusercontent.com/46655309/127913811-08b7dc59-9233-4270-b126-ce4b83cc5a6b.JPG)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+------------------------------------------------------------------------------------------------------------------------------
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Description
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Weather Forecast allows you to search for weather information for every city in the world. When you search for specific city then this city will stay saved in the main page, there is also an option for searching the cities by getting your current localization. Weather Forecast also has an option of dark and light mode for your more pleasure user experience depending on your preferences! 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+#### My intentions
+
+I've created this app to make searching for weather information easy and enjoyable.
+
+
+#### Tools
+
+- Typescript
+- Javascript
+- Styled-components
+- Html
+- Redux
+
+
+---
+
+## How To Use
+
+
+#### Installation
+
+1. git clone (github repo link)
+2. npm install 
