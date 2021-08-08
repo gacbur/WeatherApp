@@ -10,6 +10,7 @@ export const SingleCityWeatherContent = styled.div`
     position:relative;
     overflow: hidden;
     padding:3em 4em;
+    padding-bottom:8em;
     margin-top: 2em;
     margin-bottom: 3em;
     width: 95%;

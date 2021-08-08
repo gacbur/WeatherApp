@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const FourtyEightHoursItemWrapper = styled.div`
-
     background-color: rgba(0,0,0,.40);
     display: flex;
     flex-direction: column;

@@ -38,22 +38,23 @@ const FourtyEightHoursCarousel: FC<FourtyEightHoursCarouselProps> = ({ fourtyEig
     }
 
     const handleMoveRight = () => {
-        console.log(move + "right");
         if (move === maxSliderMove[sliderIndex]) return
         setMove(move + 100);
     }
 
     const handleMoveLeft = () => {
-        console.log(move + "left");
         if (move === minSliderMove) return setMove(minSliderMove);
         setMove(move - 100);
     }
 
-    window.addEventListener('resize', updateWindowWidth)
 
 
     useEffect(() => {
+        window.addEventListener('resize', updateWindowWidth)
+
+
         updateWindowWidth()
+        return () => window.removeEventListener('resize', updateWindowWidth)
     }, []);
 
 

@@ -13,7 +13,7 @@ type FourtyEightHoursItemProps = {
 
 const FourtyEightHoursItem: FC<FourtyEightHoursItemProps> = ({ weatherItem, sliderIndex, hoursInSlider, id }) => {
 
-    const { weatherDesc, weatherIcon, temp, humidity, pressure, dtCurrent, dt, timezone, timezone_name } = weatherItem
+    const { weatherIcon, temp, dt, timezone_name } = weatherItem
 
 
     const formatTimestamp = () => {

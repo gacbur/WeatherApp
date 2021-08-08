@@ -9,7 +9,7 @@ export const SevenDaysCarouselWrapper = styled.div`
     justify-content: flex-start;
     overflow-y: scroll;
     height:500px;
-    background-color: rgba(255,255,255,.2);
+    background-color: rgba(0,0,0,.40);
     
     @media all and (max-width:900px){
         padding:.5em 0em;
@@ -22,6 +22,6 @@ export const SevenDaysCarouselWrapper = styled.div`
     `
 
 export const SevenDaysTitleCnt = styled.div`
-    margin-top:5em;
+    margin-top:2em;
     margin-bottom: 1em;
 `

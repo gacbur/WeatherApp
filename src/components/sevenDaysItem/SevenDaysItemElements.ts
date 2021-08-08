@@ -5,7 +5,7 @@ export const SevenDaysWrapper = styled.div`
     display: flex;
     align-items: center;
     padding:0em 4em;
-    background-color: rgba(0,0,0,.40);
+    background-color: rgba(0,0,0,.30);
     color:rgba(255,255,255,.8);
 
     @media all and (max-width:700px){
