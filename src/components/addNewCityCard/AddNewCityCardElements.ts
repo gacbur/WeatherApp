@@ -41,7 +41,7 @@ export const AddNewCityCardWrapper = styled.div`
         left:50%;
         margin-top: .05em;
         transform: translate(-50%, 0%);
-        font-size: 180px;
+        font-size:${(props: { flatView: boolean }) => props.flatView ? '0px' : '190px'};
         color:${props => props.theme.NewCityCardIconColor};
         overflow: hidden;
     }
