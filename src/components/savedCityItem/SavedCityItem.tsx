@@ -148,16 +148,16 @@ const SavedCityItem: FC<SavedCityItemProps> = ({ city, setOpened }) => {
                     <h2 className="city-name">{cityProperties[0].name}, {cityProperties[0].country}</h2>
                     <h4 className="weather-desc">{cityProperties[0].weatherDesc}</h4>
                     <img className="weather-icon" src={`http://openweathermap.org/img/wn/${cityProperties[0].weatherIcon}@2x.png`} alt='' />
-                    <h2 className="temp-main">{cityProperties[0].temp.toFixed(0) + "°"}</h2>
+                    <h2 className="temp-main">{cityProperties[0].temp.toFixed(0) + "°C"}</h2>
                     <MinMaxTempCnt>
                         <div className="temp-wrapper">
                             <h6 className="temp-type">max</h6>
-                            <h5 className="temp">{cityProperties[0].temp_max.toFixed(0) + "°"}</h5>
+                            <h5 className="temp">{cityProperties[0].temp_max.toFixed(0) + "°C"}</h5>
 
                         </div>
                         <div className="temp-wrapper">
                             <h6 className="temp-type">min</h6>
-                            <h5 className="temp">{cityProperties[0].temp_min.toFixed(0) + "°"}</h5>
+                            <h5 className="temp">{cityProperties[0].temp_min.toFixed(0) + "°C"}</h5>
                         </div>
                     </MinMaxTempCnt>
 
