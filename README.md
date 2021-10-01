@@ -23,9 +23,10 @@
 
 
 
+
 ## Description
 
-Weather Forecast allows you to search for weather information for every city in the world. When you search for specific city then this city will stay saved in the main page, there is also an option for searching the cities by getting your current localization. Weather Forecast also comes with an option of dark and light mode for better user experience! 
+Weather Forecast allows you to search for weather information for every city in the world. When you search for a specific city then this city will stay saved in the main page, there is also an option for searching the cities by getting your current localization. Weather Forecast also comes with an option of dark and light mode for better user experience! 
 
 
 #### My intentions
@@ -38,7 +39,7 @@ I've created this app to make searching for weather information easy and enjoyab
 - Typescript
 - Javascript
 - Styled-components
-- Css
+- CSS
 - Html
 - Redux
 
